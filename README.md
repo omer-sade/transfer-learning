@@ -117,7 +117,7 @@ python -m venv venv
 source venv/bin/activate  # On Windows: venv\Scripts\activate
 
 # Install required packages
-pip install torch torchvision scipy matplotlib
+pip install -r requirements.txt
 ```
 
 ## Usage

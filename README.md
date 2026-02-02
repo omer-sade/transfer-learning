@@ -1,6 +1,6 @@
 # Transfer Learning Project
 
-A comprehensive transfer learning study comparing multiple vision model architectures (ResNet50, Vision Transformer-B, and Vision Transformer-Huge) fine-tuned on the Flowers-102 classification task. This project evaluates how different pre-trained architectures perform when adapted for fine-grained visual classification with limited task-specific data.
+A comprehensive transfer learning study comparing multiple vision model architectures (VGG19, YOLOv5, ResNet50, Vision Transformer-B) fine-tuned on the Flowers-102 classification task. This project evaluates how different pre-trained architectures perform when adapted for fine-grained visual classification with limited task-specific data.
 
 ## Overview
 

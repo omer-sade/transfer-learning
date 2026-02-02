@@ -6,20 +6,12 @@ A comprehensive transfer learning study comparing multiple vision model architec
 
 Transfer learning leverages pre-trained models from large-scale datasets (ImageNet) to solve downstream tasks more effectively. This project investigates how different model architectures compare when fine-tuned on the Flowers-102 dataset, including:
 
+- **VGG19**: CNN-based vision model
+- **YOLOv5**: Object detection model, adjusted for classification
 - **ResNet50**: A classical CNN-based architecture
 - **Vision Transformer-B (ViT-B-16)**: A transformer-based architecture with base model size
-- **Vision Transformer-Huge (ViT-Huge)**: A larger transformer-based architecture
 
 Each model is trained twice with different random seeds to ensure reproducibility and robustness of results.
-
-## Features
-
-- ✅ **Multiple Architectures**: Compare CNN and transformer-based models
-- ✅ **Data Augmentation**: Horizontal flips and center crops for improved generalization
-- ✅ **Early Stopping**: Prevents overfitting in transformer models
-- ✅ **Reproducible Results**: Multiple runs with different seeds
-- ✅ **Comprehensive Evaluation**: Training/validation/test splits and per-epoch metrics
-- ✅ **Pretrained Weights**: All models initialized with ImageNet-pretrained weights
 
 ## Dataset
 
@@ -31,76 +23,6 @@ Each model is trained twice with different random seeds to ensure reproducibilit
 - **Data Split**: 50% training, 25% validation, 25% test
 - **Preprocessing**: Images resized to 224×224 pixels with center crop and normalization
 - **Augmentation**: Horizontal flips applied during training
-
-**Location**: `data/flowers-102/`
-- `jpg/`: Image files organized by class
-- `imagelabels.mat`: Class labels for each image
-- `setid.mat`: Train/validation/test split indices
-
-## Models & Architecture
-
-### ResNet50
-- **Backbone**: ResNet50 pretrained on ImageNet
-- **Training Strategy**: Fine-tune all layers
-- **Hyperparameters**:
-  - Epochs: 5
-  - Batch Size: 32
-  - Learning Rate: 0.0001
-  - Optimizer: Adam
-  - Output Classes: 102
-- **Runs**: 2 (with seeds 42 and 43)
-- **Files**: `models/resnet50_run_1.pth`, `models/resnet50_run_2.pth`
-
-### Vision Transformer-B-16 (ViT-B-16)
-- **Backbone**: Vision Transformer-B-16 pretrained on ImageNet
-- **Training Strategy**: Fine-tune all layers with early stopping
-- **Hyperparameters**:
-  - Max Epochs: 20 (with early stopping, patience=3)
-  - Batch Size: 16
-  - Learning Rate: 0.00001
-  - Optimizer: Adam
-  - Output Classes: 102
-- **Runs**: 2 (with seeds 42 and 43)
-- **Files**: `models/vit_b_run_1.pth`, `models/vit_b_run_2.pth`
-- **Performance**: ~97.7% validation accuracy
-
-### Vision Transformer-Huge (ViT-Huge)
-- **Backbone**: Vision Transformer-Huge pretrained on ImageNet
-- **Training Strategy**: Fine-tune all layers with early stopping
-- **Hyperparameters**:
-  - Max Epochs: 20 (with early stopping, patience=3)
-  - Batch Size: 16 (reduced for memory efficiency)
-  - Learning Rate: 0.00001
-  - Optimizer: Adam
-  - Output Classes: 102
-- **Runs**: 2 (with seeds 42 and 43)
-- **Files**: `models/vithuge_run_1.pth`, `models/vithuge_run_2.pth`
-
-## Project Structure
-
-```
-transfer-learning/
-├── README.md                    # This file
-├── data/
-│   └── flowers-102/            # Flowers-102 dataset
-│       ├── jpg/                # Image files by class
-│       ├── imagelabels.mat     # Class labels
-│       └── setid.mat           # Train/val/test indices
-├── models/                      # Trained model checkpoints
-│   ├── resnet50_run_1.pth
-│   ├── resnet50_run_2.pth
-│   ├── vit_b_run_1.pth
-│   ├── vit_b_run_2.pth
-│   ├── vithuge_run_1.pth
-│   └── vithuge_run_2.pth
-└── src/
-    ├── eval/                   # Evaluation scripts
-    │   ├── resnet50.py         # ResNet50 training script
-    │   ├── vit_b.py            # ViT-B-16 training script
-    │   └── utils.py            # Utility functions (EarlyStopping, TransformWrapper)
-    └── plots/
-        └── plot_results.py     # Visualization script for results
-```
 
 ## Installation & Setup
 
@@ -148,8 +70,6 @@ python plot_results.py
 
 Training scripts generate:
 - **Trained Model**: Checkpoint file saved to `models/` directory
-- **Console Logs**: Per-epoch training loss, accuracy, validation loss, and validation accuracy
-- **Metrics**: Final test set performance
 
 ## Reproducibility
 
@@ -168,15 +88,14 @@ The same data splits (train/val/test) are used across all models to ensure fair 
 
 - Vision Transformers demonstrate strong performance on the Flowers-102 classification task
 - ViT-B-16 achieves approximately 97.7% validation accuracy
-- Transformer models benefit from early stopping to prevent overfitting
 - Consistent results across multiple runs validate model reliability
 
 ## Dependencies
 
-- **PyTorch**: Deep learning framework
-- **torchvision**: Computer vision models and utilities
-- **scipy**: Scientific computing (MAT file loading)
-- **matplotlib**: Visualization and plotting
+- **PyTorch**
+- **torchvision**
+- **scipy**
+- **matplotlib**
 
 ## References
 
